@@ -33,7 +33,7 @@ def get_menu(context, request):
     else:
         try:
             template_response = get_admin_site(context.current_app).index(request)
-        # Django 1.10 removed the current_app parameter for some classes and functions. 
+        # Django 1.10 removed the current_app parameter for some classes and functions.
         # Check the release notes.
         except AttributeError:
             template_response = get_admin_site(context.request.resolver_match.namespace).index(request)
@@ -340,7 +340,7 @@ class Menu(object):
         }
 
     def get_native_model_url(self, model):
-        return model.get('admin_url') or model.get('add_url', '')
+        return model.get('admin_url') or model.get('add_url') or ''
 
     def process_model(self, model, app_name):
         if 'model' in model:
